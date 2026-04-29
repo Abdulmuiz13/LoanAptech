@@ -1,2 +1,0 @@
-# LoanAptech
-"# LoanAptech" 
