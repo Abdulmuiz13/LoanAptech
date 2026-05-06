@@ -80,7 +80,7 @@ const Apply = () => {
                 </div>
                 {error && <div className="error">{error}</div>}
                 <div className="apply-form">
-                    <form onSubmit={handleSubmit}>
+                    <form onSubmit={handleApplyLoan}>
                         <h2> Full Name</h2>
                         <div className="input-group">
                             <input
