@@ -20,7 +20,7 @@ const Apply = () => {
             [e.target.name]: e.target.value
         });
     }
-    const handleSubmit = async (e) => {
+    const handleApplyLoan = async (e) => {
         e.preventDefault();
         setError("");
 
