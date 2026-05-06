@@ -14,6 +14,7 @@ const allowedOrigins = [
   'http://localhost:5173', // Keep this for your local development
   'https://loan-aptech-git-main-abdulmuizsalawu13-9796s-projects.vercel.app', // Your specific preview URL
   'https://loan-aptech-2grdtbr5t-abdulmuizsalawu13-9796s-projects.vercel.app', // Another preview URL
+  'https://loan-aptech-neon.vercel.app/', // Another preview URL
   process.env.CLIENT_URL // Add the actual frontend URL through environment variables
 ].filter(Boolean);
 
