@@ -10,10 +10,17 @@ const app = express();
 connectDB();
 
 // Middleware
-app.use(cors({
-  origin: 'http://localhost:5173', 
-  credentials: true 
-}));
+const corsOptions = {
+  origin: [
+    'http://localhost:5173', // Keep this for your local development
+    'https://loan-aptech-git-main-abdulmuizsalawu13-9796s-projects.vercel.app', // Your specific preview URL
+    'https://loanaptech-9b30.onrender.com',  // Your production URL
+    'https://loan-aptech-2grdtbr5t-abdulmuizsalawu13-9796s-projects.vercel.app/' // Another preview URL
+  ],
+  credentials: true, // Required if you are sending cookies/sessions
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(cookieParser()); 
 
