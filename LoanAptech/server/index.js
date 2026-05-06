@@ -10,14 +10,22 @@ const app = express();
 connectDB();
 
 // Middleware
+const allowedOrigins = [
+  'http://localhost:5173', // Keep this for your local development
+  'https://loan-aptech-git-main-abdulmuizsalawu13-9796s-projects.vercel.app', // Your specific preview URL
+  'https://loan-aptech-2grdtbr5t-abdulmuizsalawu13-9796s-projects.vercel.app', // Another preview URL
+  process.env.CLIENT_URL // Add the actual frontend URL through environment variables
+].filter(Boolean);
+
 const corsOptions = {
-  origin: [
-    'http://localhost:5173', // Keep this for your local development
-    'https://loan-aptech-git-main-abdulmuizsalawu13-9796s-projects.vercel.app', // Your specific preview URL
-    'https://loanaptech-9b30.onrender.com',  // Your production URL
-    'https://loan-aptech-2grdtbr5t-abdulmuizsalawu13-9796s-projects.vercel.app/' // Another preview URL
-  ],
-  credentials: true, // Required if you are sending cookies/sessions
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error(`CORS policy does not allow access from origin ${origin}`));
+    }
+  },
+  credentials: true // Required if you are sending cookies/sessions
 };
 
 app.use(cors(corsOptions));

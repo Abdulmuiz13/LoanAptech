@@ -43,6 +43,7 @@ const Apply = () => {
         try{
             const response = await fetch("https://loanaptech-9b30.onrender.com/api/loans/apply", {
                 method: "POST",
+                credentials: "include",
                 headers: {
                     "Content-Type": "application/json"
                 },
