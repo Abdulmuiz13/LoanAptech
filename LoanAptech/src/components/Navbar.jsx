@@ -47,6 +47,47 @@ function Navbar() {
     }
   };
 
+  const renderAuthLinks = () => {
+    if (loading) return null;
+
+    if (user) {
+      return (
+        <>
+          <li>
+            <Link to="/apply" className={isActive("/apply") ? "nav-link active" : "nav-link"}>
+              Apply Now
+            </Link>
+          </li>
+          <li>
+            <Link to="/dashboard" className="nav-cta">
+              Dashboard
+            </Link>
+          </li>
+          <li>
+            <button onClick={handleLogout} className="logout-btn">
+              Logout
+            </button>
+          </li>
+        </>
+      );
+    }
+
+    return (
+      <>
+        <li>
+          <Link to="/login" className="nav-link">
+            Login
+          </Link>
+        </li>
+        <li>
+          <Link to="/signup" className="nav-cta">
+            Sign Up
+          </Link>
+        </li>
+      </>
+    );
+  };
+
   return (
     <nav className="navbar">
       <div className="navbar-container">
