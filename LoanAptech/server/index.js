@@ -12,19 +12,30 @@ connectDB();
 // Middleware
 const allowedOrigins = [
   'http://localhost:5173', // Keep this for your local development
-  'https://loan-aptech-git-main-abdulmuizsalawu13-9796s-projects.vercel.app', // Your specific preview URL
-  'https://loan-aptech-2grdtbr5t-abdulmuizsalawu13-9796s-projects.vercel.app', // Another preview URL
-  'https://loan-aptech-neon.vercel.app/', // Another preview URL
+  'https://loan-aptech-git-main-abdulmuizsalawu13-9796s-projects.vercel.app',
+  'https://loan-aptech-2grdtbr5t-abdulmuizsalawu13-9796s-projects.vercel.app',
+  'https://loan-aptech-neon.vercel.app',
   process.env.CLIENT_URL // Add the actual frontend URL through environment variables
 ].filter(Boolean);
 
 const corsOptions = {
   origin: (origin, callback) => {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error(`CORS policy does not allow access from origin ${origin}`));
+    // Allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) {
+      return callback(null, true);
     }
+    
+    // Check if origin is in whitelist
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    }
+    
+    // Allow any vercel.app subdomain in production
+    if (process.env.NODE_ENV === 'production' && origin.includes('.vercel.app')) {
+      return callback(null, true);
+    }
+    
+    callback(new Error(`CORS policy does not allow access from origin ${origin}`));
   },
   credentials: true // Required if you are sending cookies/sessions
 };

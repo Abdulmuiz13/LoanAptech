@@ -50,9 +50,9 @@ const Apply = () => {
                 body: JSON.stringify({
                     FullName: formData.FullName,
                     email: formData.email,
-                    LoanAmount: formData.LoanAmount,
-                    LoanTenure: formData.LoanTenure,
-                    PurposeofLoan: formData.PurposeofLoan
+                    amount: formData.LoanAmount,
+                    purpose: formData.PurposeofLoan,
+                    duration: formData.LoanTenure
                 })
             });
             const data = await response.json();
